@@ -1,0 +1,16 @@
+{
+    "name": "English Dictionary",
+    "short_name": "Dictionary",
+    "theme_color": "#ffffff",
+    "background_color": "#a445ed",
+    "display": "standalone",
+    "orientation": "portrait",
+    "start_url": ".",
+    "icons": [
+        {
+            "src": "../assets/images/logo.svg",
+            "sizes": "34x38",
+            "type": "image/png"
+        }
+    ]
+}

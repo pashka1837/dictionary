@@ -10,7 +10,9 @@
     src: url(/assets/fonts/lora/Lora-VariableFont_wght.ttf);
 }
 
-
+.unselectable {
+    user-select: none;
+}
 
 *,
 *:after,

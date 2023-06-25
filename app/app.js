@@ -71,9 +71,10 @@ function handleData({
 
 async function fetchWord(word) {
   const response = await fetch(`${baseUrl}/${word}`, { headers: header }).catch(
-    (error) => {
+    async (error) => {
+      await addTouchEventsListeners();
       handleFetchError(error);
-      throw new Error(`Something went wrong. `, error);
+      throw Error(`Something went wrong. `, error);
     }
   );
   let result;
@@ -81,7 +82,7 @@ async function fetchWord(word) {
     result = await response.json();
     handleNotFound(result);
     await addTouchEventsListeners();
-    throw new Error(`Definition not found!`);
+    throw Error(`Definition not found!`);
   }
   result = await response.json();
   console.log(result);
@@ -119,6 +120,16 @@ export async function handleSubmit(e) {
   await addTouchEventsListeners();
 }
 
+window.addEventListener(`load`, async () => {
+  if ('serviceWorker' in navigator) {
+    try {
+      await navigator.serviceWorker.register('sw.js');
+      console.log('serviceWorker succed');
+    } catch (e) {
+      console.log('serviceWorker failed');
+    }
+  }
+});
 window.onload = preloadTheme();
 document.body.addEventListener(`pointerdown`, focusOnBody);
 switchThemeBtn.addEventListener(`change`, handleSwitchTheme);

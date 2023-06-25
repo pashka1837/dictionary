@@ -4,11 +4,13 @@
   "description": "",
   "main": "app.js",
   "scripts": {
+    "start": "",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "eslint-config-wesbos": "^3.2.3"
+    "eslint-config-wesbos": "^3.2.3",
+    "live-server": "^1.2.2"
   }
 }
