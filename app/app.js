@@ -70,7 +70,12 @@ function handleData({
 }
 
 async function fetchWord(word) {
-  const response = await fetch(`${baseUrl}/${word}`, { headers: header });
+  const response = await fetch(`${baseUrl}/${word}`, { headers: header }).catch(
+    () => {
+      handleFetchError();
+      throw Error(`Something went wrong. `);
+    }
+  );
   let result;
   if (response.status === 400) {
     console.log(`in 400`, response);
