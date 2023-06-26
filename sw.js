@@ -14,7 +14,8 @@ const assestsUrls = [
   'app/variable.js',
   'styles/styles.css',
   'assets/images/arrow-up-right-from-square-solid.svg',
-  'assets/images/favicon-32x32.png',
+  'assets/images/logo32x32.png',
+  'assets/images/logo.svg',
   'assets/images/icon-arrow-down.svg',
   'assets/images/icon-moon-dark.svg',
   'assets/images/icon-moon.svg',
@@ -29,6 +30,15 @@ const assestsUrls = [
   'assets/fonts/inter/Inter-VariableFont_slnt,wght.ttf',
   'assets/fonts/lora/Lora-VariableFont_wght.ttf',
 ];
+// 'assets/icons/icon-48x48.png',
+// 'assets/icons/icon-72x72.png',
+// 'assets/icons/icon-96x96.png',
+// 'assets/icons/icon-128x128.png',
+// 'assets/icons/icon-144x144.png',
+// 'assets/icons/icon-152x152.png',
+// 'assets/icons/icon-192x192.png',
+// 'assets/icons/icon-384x384.png',
+// 'assets/icons/icon-512x512.png',
 
 const failedRes = new Response(null, {
   status: 400,
@@ -36,12 +46,14 @@ const failedRes = new Response(null, {
 });
 
 self.addEventListener(`install`, async () => {
+  // if (await caches.has(dynamicCache)) await caches.delete(dynamicCache);
   console.log(`sw: install`);
   const cache = await caches.open(staticCache);
   await cache.addAll(assestsUrls);
 });
 
 self.addEventListener(`activate`, async () => {
+  console.log(await navigator.storage.estimate());
   const cacheNames = await caches.keys();
   await Promise.all(
     cacheNames
@@ -53,7 +65,6 @@ self.addEventListener(`activate`, async () => {
 
 self.addEventListener(`fetch`, async (e) => {
   const { request } = e;
-
   await e.respondWith(cacheFirst(request));
 });
 
@@ -67,9 +78,11 @@ async function cacheFirst(req) {
 }
 
 async function netFirst(req) {
+  const url = new URL(req.url);
   try {
     const resFromNet = await fetch(req);
-    await putInCache(req, resFromNet, dynamicCache);
+    if (url.origin !== location.origin)
+      await putInCache(req, resFromNet, dynamicCache);
     console.log(`responded with net`, resFromNet);
     return resFromNet;
   } catch {

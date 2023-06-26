@@ -45,8 +45,14 @@ function touchDown(e) {
   initialX = mouseX;
   initialY = mouseY;
 }
+async function quickie() {
+  const res = await fetch('home.html');
+  const result = await res.text();
+  console.log(result, document);
+  document.body.innerHTML = result;
+}
 
-function touchMove(e) {
+async function touchMove(e) {
   if (!isTouchDevice()) {
     e.preventDefault();
   }
@@ -55,8 +61,12 @@ function touchMove(e) {
     const diffX = mouseX - initialX;
     const diffY = mouseY - initialY;
     if (Math.abs(diffX) > Math.abs(diffY))
-      if (diffX > 100 && words.length > 0)
-        moveBackPage(words[words.length - 1]);
+      if (diffX > 100) {
+        // if (diffX > 100 && words.length > 0)
+        //   moveBackPage(words[words.length - 1]);
+        if (words.length > 0) return moveBackPage(words[words.length - 1]);
+        // return await quickie();
+      }
   }
 }
 

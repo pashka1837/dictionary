@@ -82,7 +82,7 @@ async function fetchWord(word) {
     handleFetchError();
     throw Error(`Something went wrong. `);
   }
-  if (response.status === 404 && !response.ok) {
+  if (response.status === 404) {
     console.log(`in !res`, response);
     result = await response.json();
     handleNotFound(result);
