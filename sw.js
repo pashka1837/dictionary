@@ -1,6 +1,7 @@
 const staticCache = 'app-v1';
 const dynamicCache = 'app-c2';
 const assestsUrls = [
+  '/',
   'index.html',
   'app/app.js',
   'app/errorHandlers.js ',
@@ -37,7 +38,6 @@ self.addEventListener(`install`, async () => {
   console.log(`sw: install`);
   const cache = await caches.open(staticCache);
   await cache.addAll(assestsUrls);
-  console.log(`in ins`, cache);
 });
 
 self.addEventListener(`activate`, async () => {
@@ -48,18 +48,15 @@ self.addEventListener(`activate`, async () => {
       .filter((name) => name !== dynamicCache)
       .map((name) => caches.delete(name))
   );
-  console.log(`sw: activated`);
 });
 
 self.addEventListener(`fetch`, async (e) => {
   const { request } = e;
-  const url = new URL(request.url);
-  console.log(url.origin, location.origin);
+
   await e.respondWith(cacheFirst(request));
 });
 
 async function cacheFirst(req) {
-  console.log(`in cF`, req);
   const resFromCache = await caches.match(req);
   if (resFromCache) {
     console.log(`responded with cahce`, resFromCache);
@@ -72,7 +69,7 @@ async function netFirst(req) {
   try {
     const resFromNet = await fetch(req);
     await putInCache(req, resFromNet, dynamicCache);
-    console.log(`responded with net`);
+    console.log(`responded with net`, resFromNet);
     return resFromNet;
   } catch {
     const resFromCached = await caches.match(req);

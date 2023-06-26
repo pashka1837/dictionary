@@ -5,7 +5,7 @@ const smileEl = document.querySelector(`.smile`);
 const titleEl = notFoundDiv.querySelector(`h2`);
 const messageEl = notFoundDiv.querySelector(`.message`);
 
-function handleFetchError(e) {
+function handleFetchError() {
   const smile = `&#128531;`;
   const result = {
     title: `Upps...`,
