@@ -1,7 +1,6 @@
 const staticCache = 'app-v1';
 const dynamicCache = 'app-c2';
 const assestsUrls = [
-  '/',
   'index.html',
   'app/app.js',
   'app/errorHandlers.js ',
