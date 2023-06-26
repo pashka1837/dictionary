@@ -70,15 +70,15 @@ function handleData({
 }
 
 async function fetchWord(word) {
-  const response = await fetch(`${baseUrl}/${word}`, { headers: header }).catch(
-    async (error) => {
-      await addTouchEventsListeners();
-      handleFetchError(error);
-      throw Error(`Something went wrong. `, error);
-    }
-  );
+  const response = await fetch(`${baseUrl}/${word}`, { headers: header });
   let result;
+  if (response.status === 400) {
+    console.log(`in 400`, response);
+    handleFetchError();
+    throw Error(`Something went wrong. `);
+  }
   if (!response.ok) {
+    console.log(`in !res`, response);
     result = await response.json();
     handleNotFound(result);
     await addTouchEventsListeners();
@@ -137,3 +137,25 @@ searchInput.addEventListener(`blur`, handleInputBlur);
 searchInput.addEventListener(`focus`, handleInputFocus);
 searchForm.addEventListener(`submit`, handleSubmit);
 fontSelectBtn.addEventListener(`pointerdown`, handleChooseFont);
+
+// async function fetchWord(word) {
+//   const response = await fetch(`${baseUrl}/${word}`, { headers: header }).catch(
+//     async (error) => {
+//       await addTouchEventsListeners();
+//       handleFetchError(error);
+//       throw Error(`Something went wrong. `, error);
+//     }
+//   );
+//   console.log(response);
+//   let result;
+//   if (!response.ok) {
+//     console.log(`in !res`, response);
+//     result = await response.json();
+//     handleNotFound(result);
+//     await addTouchEventsListeners();
+//     throw Error(`Definition not found!`);
+//   }
+//   result = await response.json();
+//   console.log(result);
+//   return result[0];
+// }

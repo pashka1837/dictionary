@@ -3,18 +3,44 @@ const dynamicCache = 'app-c2';
 const assestsUrls = [
   'index.html',
   'app/app.js',
+  'app/errorHandlers.js ',
+  'app/generateHTML.js',
+  'app/inputHandlers.js',
+  'app/navigate.js',
+  'app/popUps.js',
+  'app/touchIF.js',
+  'app/variable.js',
   'styles/styles.css',
+  'assets/images/arrow-up-right-from-square-solid.svg',
+  'assets/images/favicon-32x32.png',
+  'assets/images/icon-arrow-down.svg',
+  'assets/images/icon-moon-dark.svg',
   'assets/images/icon-moon.svg',
-  'offline.html',
+  'assets/images/icon-new-window.svg',
+  'assets/images/icon-play.svg',
+  'assets/images/icon-search.svg',
+  'assets/images/xmark-red.svg',
+  'assets/images/xmark.svg',
+  'assets/fonts/IBMPlexMono/IBMPlexMono-Bold.ttf',
+  'assets/fonts/IBMPlexMono/IBMPlexMono-BoldItalic.ttf',
+  'assets/fonts/IBMPlexMono/IBMPlexMono-Regular.ttf',
+  'assets/fonts/inter/Inter-VariableFont_slnt,wght.ttf',
+  'assets/fonts/lora/Lora-VariableFont_wght.ttf',
 ];
 
-self.addEventListener(`install`, async (e) => {
+const failedRes = new Response(null, {
+  status: 400,
+  headers: { 'Content-Type': 'text/plain' },
+});
+
+self.addEventListener(`install`, async () => {
   console.log(`sw: install`);
   const cache = await caches.open(staticCache);
   await cache.addAll(assestsUrls);
+  console.log(`in ins`, cache);
 });
 
-self.addEventListener(`activate`, async (e) => {
+self.addEventListener(`activate`, async () => {
   const cacheNames = await caches.keys();
   await Promise.all(
     cacheNames
@@ -28,27 +54,34 @@ self.addEventListener(`activate`, async (e) => {
 self.addEventListener(`fetch`, async (e) => {
   const { request } = e;
   const url = new URL(request.url);
-  if (url.origin === location.origin) {
-    await e.respondWith(cacheFirst(request));
-  } else {
-    e.respondWith(netFirst(request));
-  }
+  console.log(url.origin, location.origin);
+  await e.respondWith(cacheFirst(request));
 });
 
 async function cacheFirst(req) {
-  const cached = await caches.match(req);
-  if (cached) return cached;
-  return await fetch(req);
+  console.log(`in cF`, req);
+  const resFromCache = await caches.match(req);
+  if (resFromCache) {
+    console.log(`responded with cahce`, resFromCache);
+    return resFromCache;
+  }
+  return await netFirst(req);
 }
 
 async function netFirst(req) {
-  const cache = await caches.open(dynamicCache);
   try {
-    const res = await fetch(req);
-    await cache.put(req, res.clone());
-    return res;
-  } catch (e) {
-    const cached = await cache.match(req);
-    return cached;
+    const resFromNet = await fetch(req);
+    await putInCache(req, resFromNet, dynamicCache);
+    console.log(`responded with net`);
+    return resFromNet;
+  } catch {
+    const resFromCached = await caches.match(req);
+    if (resFromCached) return resFromCached;
+    return failedRes;
   }
+}
+
+async function putInCache(req, res, typeOfCache) {
+  const cache = await caches.open(typeOfCache);
+  await cache.put(req, res.clone());
 }

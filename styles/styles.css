@@ -1,13 +1,32 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
-
 @font-face {
     font-family: 'Inter';
-    src: url(/assets/fonts/inter/Inter-VariableFont_slnt\,wght.ttf);
+    src: url(../assets/fonts/inter/Inter-VariableFont_slnt\,wght.ttf);
 }
 
 @font-face {
     font-family: 'Lora';
-    src: url(/assets/fonts/lora/Lora-VariableFont_wght.ttf);
+    src: url(../assets/fonts/lora/Lora-VariableFont_wght.ttf);
+}
+
+@font-face {
+    font-family: 'IBM Plex Mono';
+    src: url(../assets/fonts/IBMPlexMono/IBMPlexMono-Bold.ttf) format("truetype");
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'IBM Plex Mono';
+    src: url(../assets/fonts/IBMPlexMono/IBMPlexMono-BoldItalic.ttf) format("truetype");
+    font-weight: 700;
+    font-style: italic;
+}
+
+
+@font-face {
+    font-family: 'IBM Plex Mono';
+    src: url(../assets/fonts/IBMPlexMono/IBMPlexMono-Regular.ttf) format("truetype");
+
 }
 
 .unselectable {
@@ -51,7 +70,7 @@ body.dark-theme {
 body {
     font-family: Inter;
     font-style: normal;
-    font-weight: 700;
+    /* font-weight: 700; */
     color: var(--text-color);
     background-color: var(--bg-color);
     height: var(--height-of-body);

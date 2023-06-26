@@ -9,7 +9,7 @@ function handleFetchError(e) {
   const smile = `&#128531;`;
   const result = {
     title: `Upps...`,
-    message: `${e}.`,
+    message: `Failed to fetch.`,
     resolution: `Please, reload this page or check with your internet provider!`,
   };
   handleNotFound(result, smile);
