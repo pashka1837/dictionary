@@ -23,12 +23,10 @@ import {
   preloadTheme,
 } from './popUps.js';
 
-import {
-  handleMeaningHtml,
-  handleResultHtml,
-  handleBottomHtml,
-  removeHtmlEl,
-} from './generateHTML.js';
+import { removeHtmlEl } from './removeHtml.js';
+import { handleBottomHtml } from './generateHTML/genBottom.js';
+import { handleMeaningHtml } from './generateHTML/genMeaning.js';
+import { handleResultHtml } from './generateHTML/genResult.js';
 
 import { handleFetchError, handleNotFound } from './errorHandlers.js';
 

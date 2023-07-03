@@ -20,7 +20,7 @@ function handleInputFocus() {
   searchInput.addEventListener(`input`, handleInput);
 }
 
-function handleInputBlur(e) {
+function handleInputBlur() {
   if (searchForm.nextElementSibling.classList.contains(`errorInput`))
     searchForm.nextElementSibling.remove();
   searchForm.style = `border: 2px solid var(--form-BG-color);`;

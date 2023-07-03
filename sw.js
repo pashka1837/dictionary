@@ -6,7 +6,11 @@ const assestsUrls = [
   'sw.js',
   'app/app.js',
   'app/errorHandlers.js ',
-  'app/generateHTML.js',
+  'app/removeHtml.js',
+  'app/generateHTML/genBottom.js',
+  'app/generateHTML/genMeaning.js',
+  'app/generateHTML/genResult.js',
+
   'app/inputHandlers.js',
   'app/navigate.js',
   'app/popUps.js',
@@ -30,15 +34,6 @@ const assestsUrls = [
   'assets/fonts/inter/Inter-VariableFont_slnt,wght.ttf',
   'assets/fonts/lora/Lora-VariableFont_wght.ttf',
 ];
-// 'assets/icons/icon-48x48.png',
-// 'assets/icons/icon-72x72.png',
-// 'assets/icons/icon-96x96.png',
-// 'assets/icons/icon-128x128.png',
-// 'assets/icons/icon-144x144.png',
-// 'assets/icons/icon-152x152.png',
-// 'assets/icons/icon-192x192.png',
-// 'assets/icons/icon-384x384.png',
-// 'assets/icons/icon-512x512.png',
 
 const failedRes = new Response(null, {
   status: 400,
@@ -46,7 +41,6 @@ const failedRes = new Response(null, {
 });
 
 self.addEventListener(`install`, async () => {
-  // if (await caches.has(dynamicCache)) await caches.delete(dynamicCache);
   console.log(`sw: install`);
   const cache = await caches.open(staticCache);
   await cache.addAll(assestsUrls);
@@ -71,7 +65,7 @@ self.addEventListener(`fetch`, async (e) => {
 async function cacheFirst(req) {
   const resFromCache = await caches.match(req);
   if (resFromCache) {
-    console.log(`responded with cahce`, resFromCache);
+    // console.log(`responded with cahce`, resFromCache);
     return resFromCache;
   }
   return await netFirst(req);
@@ -83,7 +77,7 @@ async function netFirst(req) {
     const resFromNet = await fetch(req);
     if (url.origin !== location.origin)
       await putInCache(req, resFromNet, dynamicCache);
-    console.log(`responded with net`, resFromNet);
+    // console.log(`responded with net`, resFromNet);
     return resFromNet;
   } catch {
     const resFromCached = await caches.match(req);
