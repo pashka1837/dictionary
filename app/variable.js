@@ -12,9 +12,9 @@ const searchBtn = document.querySelector(`.searchBtn`);
 const searchInput = document.querySelector(`.search input `);
 const searchForm = document.querySelector(`.search`);
 
-const notFoundDiv = document.querySelector(`.notFound`);
-
 const words = [];
+
+let currentWord;
 
 const baseUrl = `https://api.dictionaryapi.dev/api/v2/entries/en`;
 const header = new Headers({
@@ -38,5 +38,4 @@ export {
   cancelSearchBtn,
   searchBtn,
   words,
-  notFoundDiv,
 };

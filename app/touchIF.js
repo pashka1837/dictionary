@@ -1,5 +1,6 @@
 import { touchArea, words } from './variable.js';
-import { moveBackPage } from './navigate.js';
+import { moveBackPage, moveNextPage } from './navigate.js';
+import { wait } from './utils/util.js';
 
 const rectLeft = touchArea.getBoundingClientRect().left;
 const rectTop = touchArea.getBoundingClientRect().top;
@@ -64,22 +65,22 @@ async function touchMove(e) {
       if (diffX > 100) {
         // if (diffX > 100 && words.length > 0)
         //   moveBackPage(words[words.length - 1]);
-        if (words.length > 0) return moveBackPage(words[words.length - 1]);
+        // if (words.length > 0)
+        return moveBackPage();
         // return await quickie();
       }
+    // if (diffX < -100) return moveNextPage(words[words.length - 1]);
   }
 }
 
-function touchUp(e) {
+function touchUp() {
   isSwiped = false;
 }
 
 isTouchDevice();
 
-const wait = async (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
 async function addTouchEventsListeners() {
-  if (words.length === 0) return;
+  // if (words.length === 0) return;
   await wait(300);
   touchArea.addEventListener(events[deviceType].down, touchDown);
   touchArea.addEventListener(events[deviceType].move, touchMove);

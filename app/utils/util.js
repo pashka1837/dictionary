@@ -1,4 +1,4 @@
-import { searchInput } from '../variable.js';
+import { searchInput, words } from '../variable.js';
 
 function trimAndFilterInput(str) {
   return str
@@ -13,4 +13,12 @@ function focusOnBody() {
   document.body.focus();
 }
 
-export { trimAndFilterInput, focusOnBody };
+function updateCurWord(word) {
+  const isExists = words.find((el) => el === word);
+  if (!isExists) words.push(word);
+  localStorage.setItem('curWord', word);
+}
+
+const wait = async (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+export { trimAndFilterInput, focusOnBody, wait, updateCurWord };

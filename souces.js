@@ -15,11 +15,15 @@ const sources = [
 
   'app/generateHTML/genBottom.js',
   'app/generateHTML/genDefenitions.js',
+  'app/generateHTML/genErrorPage.js',
   'app/generateHTML/genEverything.js',
+  'app/generateHTML/genIntro.js',
   'app/generateHTML/genMeaning.js',
   'app/generateHTML/genPhonetAudio.js',
   'app/generateHTML/genSyn.js',
   'app/generateHTML/removeHtml.js',
+
+  'app/utils/util.js',
 
   'styles/styles.css',
   'assets/images/arrow-up-right-from-square-solid.svg',

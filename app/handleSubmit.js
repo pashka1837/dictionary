@@ -2,7 +2,11 @@ import {
   removeTouchEventsListeners,
   addTouchEventsListeners,
 } from './touchIF.js';
-import { trimAndFilterInput, focusOnBody } from './utils/util.js';
+import {
+  trimAndFilterInput,
+  focusOnBody,
+  updateCurWord,
+} from './utils/util.js';
 import { handleInputError } from './errorHandlers.js';
 import { searchInput, regexForInputVal, words } from './variable.js';
 
@@ -48,7 +52,13 @@ async function handleSubmit(e) {
 
   const result = await fetchWord(str);
 
-  words.push(str);
+  if (e) {
+    while (words.length !== 0) {
+      words.pop();
+    }
+  } else {
+    updateCurWord(str);
+  }
 
   generateAllHtml(result);
 

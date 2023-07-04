@@ -1,6 +1,7 @@
 import { addTouchEventsListeners } from './touchIF.js';
 import { baseUrl, header } from './variable.js';
 import { handleFetchError, handleNotFound } from './errorHandlers.js';
+import { updateCurWord } from './utils/util.js';
 
 async function fetchWord(word) {
   const response = await fetch(`${baseUrl}/${word}`, { headers: header }).catch(
@@ -11,12 +12,11 @@ async function fetchWord(word) {
   );
   let result;
   if (response.status === 400) {
-    console.log(`in 400`, response);
     handleFetchError();
     throw Error(`Something went wrong. `);
   }
   if (response.status === 404) {
-    console.log(`in !res`, response);
+    updateCurWord(`error404`);
     result = await response.json();
     handleNotFound(result);
     await addTouchEventsListeners();
