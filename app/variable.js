@@ -1,15 +1,22 @@
 const touchArea = document.body;
-const searchInput = document.querySelector(`.search input `);
-const searchForm = document.querySelector(`.search`);
-const resultDiv = document.querySelector(`.result`);
-const bottomDiv = document.querySelector(`.bottom`);
-const fontSelectBtn = document.querySelector(`.fontSelect`);
 
 const popUpEl = document.querySelector(`.fontSelPopUp`);
+
+const phoneticAndAudioDiv = document.querySelector(`.phoneticAndAudio`);
+const searchedWord = document.querySelector(`.phonetic h2`);
+const transcriptWord = document.querySelector(`.transcript`);
+
+const fontSelectBtn = document.querySelector(`.fontSelect`);
+const switchThemeBtn = document.querySelector(`.switch input`);
+
 const cancelSearchBtn = document.querySelector(`.cancelSearchBtn`);
 const searchBtn = document.querySelector(`.searchBtn`);
+const searchInput = document.querySelector(`.search input `);
+const searchForm = document.querySelector(`.search`);
 
-const switchThemeBtn = document.querySelector(`.switch input`);
+const bottomDiv = document.querySelector(`.bottom`);
+
+const notFoundDiv = document.querySelector(`.notFound`);
 
 const words = [];
 
@@ -25,7 +32,9 @@ export {
   touchArea,
   searchInput,
   searchForm,
-  resultDiv,
+  phoneticAndAudioDiv,
+  searchedWord,
+  transcriptWord,
   bottomDiv,
   fontSelectBtn,
   switchThemeBtn,
@@ -36,4 +45,5 @@ export {
   cancelSearchBtn,
   searchBtn,
   words,
+  notFoundDiv,
 };

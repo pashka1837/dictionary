@@ -1,6 +1,6 @@
 import { bottomDiv } from '../variable.js';
 
-export function handleBottomHtml(sourceUrls) {
+export function genBottomSourceHtml(sourceUrls) {
   const bottomSourceEl = document.querySelector(`.bottom a`);
   bottomSourceEl.childNodes[0].textContent =
     sourceUrls[0] || `https://en.wiktionary.org/wiki/`;

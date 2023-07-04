@@ -1,3 +1,4 @@
+import { trimAndFilterInput } from './utils/util.js';
 import {
   searchInput,
   searchForm,
@@ -5,6 +6,7 @@ import {
   cancelSearchBtn,
   searchBtn,
 } from './variable.js';
+import { handleInputError } from './errorHandlers.js';
 
 async function handleCancelSearch(e) {
   e.preventDefault();
@@ -35,11 +37,7 @@ function handleInput() {
   }
   searchForm.style = `border: 2px solid #A445ED;`;
   cancelSearchBtn.removeEventListener(`pointerdown`, handleCancelSearch);
-  const str = searchInput.value
-    .trim()
-    .toLowerCase()
-    .split(` `)
-    .filter((word) => word !== ``);
+  const str = trimAndFilterInput(searchInput.value);
   if (!str || str.length === 0) {
     searchInput.value = ``;
     cancelSearchBtn.classList.add(`off`);
@@ -48,26 +46,10 @@ function handleInput() {
     cancelSearchBtn.addEventListener(`pointerdown`, handleCancelSearch, {
       once: true,
     });
-    if (str.join(``).match(regexForInputVal)) {
+    if (str.match(regexForInputVal)) {
       handleInputError(1);
     }
   }
 }
 
-function handleInputError(error) {
-  searchForm.style = `border: 2px solid #FF5252;`;
-  cancelSearchBtn.classList.add(`red`);
-  if (!searchForm.nextElementSibling.classList.contains(`errorInput`)) {
-    const errorEl = document.createElement(`p`);
-    errorEl.classList.add(`errorInput`);
-    searchForm.insertAdjacentElement(`afterend`, errorEl);
-  }
-  if (error === 1) {
-    searchForm.nextElementSibling.textContent = `Uuuh, can’t use characters...`;
-  }
-  if (error === 0) {
-    searchForm.nextElementSibling.textContent = `Whoops, can’t be empty...`;
-  }
-}
-
-export { handleInputBlur, handleInputFocus, handleInputError };
+export { handleInputBlur, handleInputFocus };

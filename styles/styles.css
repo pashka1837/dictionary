@@ -273,25 +273,25 @@ input:checked+.slider:before {
 }
 
 
-.result {
+.phoneticAndAudio {
     margin: 6.1vw 6.1vw 0px 6.1vw;
     height: 4.25rem;
     display: grid;
     grid-template-columns: 5.8fr 1fr;
 }
 
-.word {
+.phonetic {
     display: grid;
 }
 
-.word h2 {
+.phonetic h2 {
     align-self: self-start;
     font-size: 2rem;
     line-height: 2.43rem;
     font-weight: 700;
 }
 
-.word .transcript {
+.phonetic .transcript {
     align-self: self-end;
     color: #A445ED;
     font-weight: 400;
@@ -313,7 +313,7 @@ input:checked+.slider:before {
     cursor: none;
 }
 
-.container {
+.meaning {
     margin: 8.5vw 6.1vw;
 }
 
@@ -342,7 +342,7 @@ input:checked+.slider:before {
     color: #757575;
 }
 
-.container ul {
+.meaning ul {
     list-style: none;
     margin-left: 3.3vw;
     margin-top: 4.1vw;
@@ -350,11 +350,11 @@ input:checked+.slider:before {
     line-height: 1.5rem;
 }
 
-.container ul * {
+.meaning ul * {
     font-weight: 400;
 }
 
-.container ul li::before {
+.meaning ul li::before {
     content: "\2022";
     /* Add content: \2022 is the CSS Code/unicode for a bullet */
     color: #A445ED;
