@@ -1,8 +1,4 @@
-import {
-  phoneticAndAudioDiv,
-  searchedWord,
-  transcriptWord,
-} from '../variable.js';
+import { genIntroHtml } from './genIntro.js';
 
 function handlePlayAudio(audioSrc) {
   const audio = new Audio(audioSrc);
@@ -17,13 +13,15 @@ function findEl(obj, audio = false) {
 }
 
 function getTranscript(phonetic, phonetics, word) {
-  searchedWord.textContent = word;
+  const searchedWord = word;
+  let transcriptWord;
   if (!phonetic && phonetics.length > 0) {
     const phoneticTransObj = phonetics.find(findEl);
     phoneticTransObj
-      ? (transcriptWord.textContent = phoneticTransObj.text)
-      : (transcriptWord.textContent = word);
-  } else transcriptWord.textContent = phonetic || word;
+      ? (transcriptWord = phoneticTransObj.text)
+      : (transcriptWord = word);
+  } else transcriptWord = phonetic || word;
+  return { searchedWord, transcriptWord };
 }
 
 function getAudio(phonetics) {
@@ -42,10 +40,16 @@ function getAudio(phonetics) {
 }
 
 function genPhoniticAudioHtml(phonetic, phonetics, word) {
-  getTranscript(phonetic, phonetics, word);
+  const { searchedWord, transcriptWord } = getTranscript(
+    phonetic,
+    phonetics,
+    word
+  );
+  const phoneticAndAudioDiv = genIntroHtml(searchedWord, transcriptWord);
+
   const playBtn = getAudio(phonetics);
   playBtn && phoneticAndAudioDiv.append(playBtn);
-  phoneticAndAudioDiv.classList.remove(`off`);
+  return phoneticAndAudioDiv;
 }
 
 export { genPhoniticAudioHtml };

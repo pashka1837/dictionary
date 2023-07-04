@@ -3,7 +3,7 @@ import { handleSubmit } from '../handleSubmit.js';
 
 async function synClick(word, syn) {
   searchInput.value = syn;
-  words.push(word);
+  // words.push(word);
   await handleSubmit();
 }
 

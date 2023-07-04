@@ -1,3 +1,4 @@
+import { genIntroHtml } from './generateHTML/genIntro.js';
 import {
   searchInput,
   switchThemeBtn,
@@ -15,6 +16,9 @@ import {
 } from './styleChangers.js';
 
 import { handleSubmit } from './handleSubmit.js';
+
+const phoneticAndAudioDiv = genIntroHtml();
+searchForm.insertAdjacentElement('afterend', phoneticAndAudioDiv);
 
 window.addEventListener(`load`, async () => {
   if ('serviceWorker' in navigator) {

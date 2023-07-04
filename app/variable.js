@@ -1,10 +1,8 @@
 const touchArea = document.body;
 
-const popUpEl = document.querySelector(`.fontSelPopUp`);
+const navEL = document.querySelector(`nav`);
 
-const phoneticAndAudioDiv = document.querySelector(`.phoneticAndAudio`);
-const searchedWord = document.querySelector(`.phonetic h2`);
-const transcriptWord = document.querySelector(`.transcript`);
+const popUpEl = document.querySelector(`.fontSelPopUp`);
 
 const fontSelectBtn = document.querySelector(`.fontSelect`);
 const switchThemeBtn = document.querySelector(`.switch input`);
@@ -13,8 +11,6 @@ const cancelSearchBtn = document.querySelector(`.cancelSearchBtn`);
 const searchBtn = document.querySelector(`.searchBtn`);
 const searchInput = document.querySelector(`.search input `);
 const searchForm = document.querySelector(`.search`);
-
-const bottomDiv = document.querySelector(`.bottom`);
 
 const notFoundDiv = document.querySelector(`.notFound`);
 
@@ -30,12 +26,9 @@ const regexForInputVal =
 
 export {
   touchArea,
+  navEL,
   searchInput,
   searchForm,
-  phoneticAndAudioDiv,
-  searchedWord,
-  transcriptWord,
-  bottomDiv,
   fontSelectBtn,
   switchThemeBtn,
   baseUrl,

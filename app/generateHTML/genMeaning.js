@@ -31,9 +31,9 @@ function genMeaningHtml(definitions, partOfSpeech, synonyms, word) {
   const meaningDiv = generateHtmlElements(partOfSpeechMod);
 
   const definitionsUlEl = genDefenitions(definitions);
-  definitionsUlEl && meaningDiv.append(definitionsUlEl);
-
   const synDiv = generateSynonyms(synonyms, word);
+
+  definitionsUlEl && meaningDiv.append(definitionsUlEl);
   synDiv && meaningDiv.append(synDiv);
 
   return meaningDiv;

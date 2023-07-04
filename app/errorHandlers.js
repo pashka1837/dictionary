@@ -1,5 +1,7 @@
 import { getLoaderCSS } from './styleChangers.js';
-import { searchForm, cancelSearchBtn, notFoundDiv } from './variable.js';
+import { searchForm, cancelSearchBtn } from './variable.js';
+import { genErrorHtml } from './generateHTML/genErrorPage.js';
+import { removeHtmlEl } from './generateHTML/removeHtml.js';
 
 function handleFetchError() {
   const smile = `&#128531;`;
@@ -8,21 +10,20 @@ function handleFetchError() {
     message: `Failed to fetch.`,
     resolution: `Please, reload this page or check with your internet provider!`,
   };
-  handleNotFound(result, smile);
+  handleNotFound(result, smile, true);
 }
 
-function handleNotFound(result, smile = undefined) {
-  const smileEl = document.querySelector(`.smile`);
-  const titleEl = notFoundDiv.querySelector(`h2`);
-  const messageEl = notFoundDiv.querySelector(`.message`);
-
+function handleNotFound(result, smile = undefined, fetch = false) {
+  const errorDiv = genErrorHtml(result, smile);
+  removeHtmlEl();
   getLoaderCSS();
-
-  smileEl.innerHTML = smile ?? `&#128533;`;
-  titleEl.textContent = result.title;
-  messageEl.textContent = `${result.message} ${result.resolution}`;
-
-  notFoundDiv.classList.remove(`off`);
+  if (!fetch) {
+    searchForm.insertAdjacentElement('afterend', errorDiv);
+    return;
+  }
+  errorDiv.style = `margin: calc(var(--height-of-navBar)*2) 6.1vw 0px 6.1vw;`;
+  searchForm.insertAdjacentElement('afterend', errorDiv);
+  searchForm.remove();
 }
 
 function handleInputError(error) {

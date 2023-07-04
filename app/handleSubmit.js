@@ -33,10 +33,10 @@ async function handleSubmit(e) {
 
   if (!str) return;
 
-  if (e)
-    while (words.length > 0) {
-      words.pop();
-    }
+  // if (e)
+  //   while (words.length > 0) {
+  //     words.pop();
+  //   }
 
   searchInput.value = ``;
 
@@ -47,6 +47,8 @@ async function handleSubmit(e) {
   removeHtmlEl();
 
   const result = await fetchWord(str);
+
+  words.push(str);
 
   generateAllHtml(result);
 
