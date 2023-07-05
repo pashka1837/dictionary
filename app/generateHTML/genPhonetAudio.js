@@ -8,8 +8,10 @@ function handlePlayAudio(audioSrc) {
 function findEl(obj, audio = false) {
   if (!audio) {
     if (obj.text && obj.text !== ``) return obj;
+    return false;
   }
   if (obj.audio && obj.audio !== ``) return obj;
+  return false;
 }
 
 function getTranscript(phonetic, phonetics, word) {
@@ -32,7 +34,7 @@ function getAudio(phonetics) {
   const playBtn = document.createElement(`img`);
 
   playBtn.classList.add(`playTranscript`);
-  playBtn.src = `../assets/images/icon-play.svg`;
+  playBtn.src = `../../assets/images/icon-play.svg`;
   playBtn.alt = `playTranscript`;
 
   playBtn.addEventListener(`pointerdown`, () => handlePlayAudio(audioSrc));

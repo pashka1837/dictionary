@@ -12,9 +12,7 @@ const searchBtn = document.querySelector(`.searchBtn`);
 const searchInput = document.querySelector(`.search input `);
 const searchForm = document.querySelector(`.search`);
 
-const words = [];
-
-let currentWord;
+const synNode = {};
 
 const baseUrl = `https://api.dictionaryapi.dev/api/v2/entries/en`;
 const header = new Headers({
@@ -37,5 +35,5 @@ export {
   popUpEl,
   cancelSearchBtn,
   searchBtn,
-  words,
+  synNode,
 };

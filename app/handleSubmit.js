@@ -8,7 +8,7 @@ import {
   updateCurWord,
 } from './utils/util.js';
 import { handleInputError } from './errorHandlers.js';
-import { searchInput, regexForInputVal, words } from './variable.js';
+import { searchInput, regexForInputVal } from './variable.js';
 
 import { getLoaderCSS } from './styleChangers.js';
 import { fetchWord } from './fetching.js';
@@ -33,14 +33,9 @@ function validateInput(input) {
 async function handleSubmit(e) {
   if (e) e.preventDefault();
   removeTouchEventsListeners();
+
   const str = validateInput(searchInput.value);
-
   if (!str) return;
-
-  // if (e)
-  //   while (words.length > 0) {
-  //     words.pop();
-  //   }
 
   searchInput.value = ``;
 
@@ -52,13 +47,7 @@ async function handleSubmit(e) {
 
   const result = await fetchWord(str);
 
-  if (e) {
-    while (words.length !== 0) {
-      words.pop();
-    }
-  } else {
-    updateCurWord(str);
-  }
+  e ? updateCurWord(str, true) : updateCurWord(str);
 
   generateAllHtml(result);
 

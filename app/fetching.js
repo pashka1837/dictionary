@@ -16,7 +16,9 @@ async function fetchWord(word) {
     throw Error(`Something went wrong. `);
   }
   if (response.status === 404) {
-    updateCurWord(`error404`);
+    let date = new Date();
+    date = date.getTime().toString().slice(4);
+    updateCurWord(`error404${date}`);
     result = await response.json();
     handleNotFound(result);
     await addTouchEventsListeners();

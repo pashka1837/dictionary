@@ -1,9 +1,9 @@
-import { searchInput, words } from '../variable.js';
+import { searchInput, synNode } from '../variable.js';
 import { handleSubmit } from '../handleSubmit.js';
-import { updateCurWord } from '../utils/util.js';
+// import { updateCurWord, searchNode } from '../utils/util.js';
 
 async function synClick(word, syn) {
-  updateCurWord(word);
+  // updateCurWord(syn);
   searchInput.value = syn;
   await handleSubmit();
 }
@@ -22,11 +22,11 @@ function generateSynonyms(synonyms, word) {
   if (!synonyms || synonyms.length === 0) return false;
   let synAr = synonyms;
   if (synAr.length > 4) synAr = synAr.slice(0, 4);
-  synAr = synAr.filter((syn) => {
-    const ifExists = words.find((el) => el === syn);
-    if (!ifExists) return syn;
-    return false;
-  });
+  // synAr = synAr.filter((syn) => {
+  //   const ifExists = searchNode(synNode, syn);
+  //   if (ifExists) return false;
+  //   return syn;
+  // });
   if (synAr.length === 0) return false;
 
   const containerSynEl = document.createElement(`div`);

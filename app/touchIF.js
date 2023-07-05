@@ -1,4 +1,4 @@
-import { touchArea, words } from './variable.js';
+import { touchArea } from './variable.js';
 import { moveBackPage, moveNextPage } from './navigate.js';
 import { wait } from './utils/util.js';
 
@@ -63,11 +63,7 @@ async function touchMove(e) {
     const diffY = mouseY - initialY;
     if (Math.abs(diffX) > Math.abs(diffY))
       if (diffX > 100) {
-        // if (diffX > 100 && words.length > 0)
-        //   moveBackPage(words[words.length - 1]);
-        // if (words.length > 0)
         return moveBackPage();
-        // return await quickie();
       }
     // if (diffX < -100) return moveNextPage(words[words.length - 1]);
   }
