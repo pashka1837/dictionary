@@ -39,6 +39,7 @@ function updateCurWord(word, remove = false) {
     };
     curNode.children.push(newNode);
   }
+  console.log(synNode);
   localStorage.setItem('curWord', newWord);
 }
 

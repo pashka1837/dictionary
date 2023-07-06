@@ -8,22 +8,22 @@ function handle400() {
   throw Error(`Something went wrong. `);
 }
 
-async function handle404(response) {
-  updateCurWord(`error404`);
+async function handle404(response, isNew) {
+  updateCurWord(`error404`, isNew);
   const result = await response.json();
   handleNotFound(result);
   await addTouchEventsListeners();
   throw Error(`Definition not found!`);
 }
 
-async function fetchWord(word) {
+async function fetchWord(word, isNew = false) {
   const response = await fetch(`${baseUrl}/${word}`, { headers: header }).catch(
     () => handle400()
   );
 
   if (response.status === 400) return handle400();
 
-  if (response.status === 404) return handle404(response);
+  if (response.status === 404) return handle404(response, isNew);
 
   const result = await response.json();
   console.log(result);

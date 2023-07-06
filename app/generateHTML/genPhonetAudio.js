@@ -34,7 +34,7 @@ function getAudio(phonetics) {
   const playBtn = document.createElement(`img`);
 
   playBtn.classList.add(`playTranscript`);
-  playBtn.src = `./../../assets/images/icon-play.svg`;
+  playBtn.src = `./assets/images/icon-play.svg`;
   playBtn.alt = `playTranscript`;
 
   playBtn.addEventListener(`pointerdown`, () => handlePlayAudio(audioSrc));

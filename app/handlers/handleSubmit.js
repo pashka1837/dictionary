@@ -14,7 +14,7 @@ import { fetchWord } from '../fetching.js';
 import { generateAllHtml } from '../generateHTML/genEverything.js';
 import { removeHtmlEl } from '../generateHTML/removeHtml.js';
 
-async function handleSubmit(e, back = false) {
+async function handleSubmit(e, isMoveToBackPage = false) {
   if (e) e.preventDefault();
   removeTouchEventsListeners();
 
@@ -28,10 +28,11 @@ async function handleSubmit(e, back = false) {
   getLoaderCSS();
 
   removeHtmlEl();
+  let result;
+  if (e) result = await fetchWord(str, true);
+  else result = await fetchWord(str);
 
-  const result = await fetchWord(str);
-
-  if (!back) {
+  if (!isMoveToBackPage) {
     e ? updateCurWord(str, true) : updateCurWord(str);
   }
 

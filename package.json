@@ -5,11 +5,13 @@
   "main": "app/app.js",
   "scripts": {
     "start": "",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node esbuildConfig.mjs"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "esbuild": "0.18.11",
     "eslint-config-wesbos": "^3.2.3",
     "live-server": "^1.2.2"
   }
