@@ -1,6 +1,8 @@
 import {
   popUpEl,
+  chooseFontEl,
   searchForm,
+  searchInput,
   fontSelectBtn,
   switchThemeBtn,
 } from './variable.js';
@@ -9,12 +11,11 @@ function chooseFont(e) {
   e.stopPropagation();
   const fontsEls = Array.from(popUpEl.firstElementChild.children);
   const fontEl = fontsEls.find((el) => el === e.target);
+
   if (fontEl) {
     document.body.style = `font-family: ${fontEl.dataset.font};`;
-    document.querySelector(`.chosenFont`).textContent = fontEl.textContent;
-    document.querySelector(
-      `.search input`
-    ).style = `font-family: ${fontEl.dataset.font};`;
+    chooseFontEl.textContent = fontEl.textContent;
+    searchInput.style = `font-family: ${fontEl.dataset.font};`;
     window.localStorage.setItem(`font`, fontEl.dataset.font);
   } else {
     popUpEl.classList.toggle(`off`);
@@ -32,7 +33,9 @@ function handleChooseFont(e) {
 
 function handleSwitchTheme() {
   document.body.classList.toggle(`dark-theme`);
+
   const moonIcon = document.querySelector(`.moonIcon`);
+
   if (document.body.classList.contains(`dark-theme`)) {
     switchThemeBtn.checked = true;
     window.localStorage.setItem(`darkTheme`, 1);
@@ -52,9 +55,9 @@ function preloadTheme() {
     const fontsEls = Array.from(popUpEl.firstElementChild.children);
     const fontEl = fontsEls.find((el) => el.dataset.font === font);
     if (fontEl) {
-      document.querySelector(`.chosenFont`).textContent = fontEl.textContent;
+      chooseFontEl.textContent = fontEl.textContent;
       document.body.style = `font-family: ${font};`;
-      document.querySelector(`.search input`).style = `font-family: ${font};`;
+      searchInput.style = `font-family: ${font};`;
     }
   }
 }

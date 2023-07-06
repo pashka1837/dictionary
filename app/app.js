@@ -7,7 +7,10 @@ import {
 } from './variable.js';
 
 import { focusOnBody } from './utils/util.js';
-import { handleInputBlur, handleInputFocus } from './inputHandlers.js';
+import {
+  handleInputBlur,
+  handleInputFocus,
+} from './handlers/handleInputField.js';
 
 import {
   handleSwitchTheme,
@@ -15,7 +18,7 @@ import {
   preloadTheme,
 } from './styleChangers.js';
 
-import { handleSubmit } from './handleSubmit.js';
+import { handleSubmit } from './handlers/handleSubmit.js';
 
 const phoneticAndAudioDiv = genIntroHtml();
 searchForm.insertAdjacentElement('afterend', phoneticAndAudioDiv);
@@ -24,8 +27,7 @@ window.addEventListener(`load`, async () => {
   if ('serviceWorker' in navigator) {
     try {
       await navigator.serviceWorker.register('sw.js', { type: 'module' });
-      console.log('serviceWorker succed');
-    } catch (e) {
+    } catch {
       console.log('serviceWorker failed');
     }
   }

@@ -10,8 +10,8 @@ function generateHtmlElements(partOfSpeechMod) {
 
   meaningDiv.classList.add(`meaning`, `${partOfSpeechMod.join(`_`)}`);
   deviderEl.classList.add(`divider`);
-  pPartOfSpeechEl.classList.add(`partOfSpeech`);
-  pShallowTextEl.classList.add(`shallowText`);
+  pPartOfSpeechEl.classList.add(`partOfSpeech`, `unselectable`);
+  pShallowTextEl.classList.add(`shallowText`, `unselectable`);
 
   pPartOfSpeechEl.textContent = `${partOfSpeechMod.join(` `)}`;
   pShallowTextEl.textContent = `Meaning`;

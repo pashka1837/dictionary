@@ -1,12 +1,12 @@
-import { trimAndFilterInput } from './utils/util.js';
+import { trimAndFilterInput } from '../utils/util.js';
 import {
   searchInput,
   searchForm,
   regexForInputVal,
   cancelSearchBtn,
   searchBtn,
-} from './variable.js';
-import { handleInputError } from './errorHandlers.js';
+} from '../variable.js';
+import { handleInputError } from './handleErrors.js';
 
 async function handleCancelSearch(e) {
   e.preventDefault();
@@ -52,4 +52,19 @@ function handleInput() {
   }
 }
 
-export { handleInputBlur, handleInputFocus };
+function validateInput(input) {
+  const str = trimAndFilterInput(input);
+  if (str.match(regexForInputVal)) {
+    handleInputError(1);
+    searchInput.focus();
+    return false;
+  }
+  if (!str || str.length === 0) {
+    handleInputError(0);
+    searchInput.focus();
+    return false;
+  }
+  return str;
+}
+
+export { handleInputBlur, handleInputFocus, validateInput };

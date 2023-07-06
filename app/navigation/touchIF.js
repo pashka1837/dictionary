@@ -1,6 +1,6 @@
-import { touchArea } from './variable.js';
-import { moveBackPage, moveNextPage } from './navigate.js';
-import { wait } from './utils/util.js';
+import { touchArea } from '../variable.js';
+import { moveBackPage } from './navigate.js';
+import { wait } from '../utils/util.js';
 
 const rectLeft = touchArea.getBoundingClientRect().left;
 const rectTop = touchArea.getBoundingClientRect().top;
@@ -46,12 +46,6 @@ function touchDown(e) {
   initialX = mouseX;
   initialY = mouseY;
 }
-async function quickie() {
-  const res = await fetch('home.html');
-  const result = await res.text();
-  console.log(result, document);
-  document.body.innerHTML = result;
-}
 
 async function touchMove(e) {
   if (!isTouchDevice()) {
@@ -62,10 +56,9 @@ async function touchMove(e) {
     const diffX = mouseX - initialX;
     const diffY = mouseY - initialY;
     if (Math.abs(diffX) > Math.abs(diffY))
-      if (diffX > 100) {
+      if (diffX > 120) {
         return moveBackPage();
       }
-    // if (diffX < -100) return moveNextPage(words[words.length - 1]);
   }
 }
 
@@ -76,8 +69,7 @@ function touchUp() {
 isTouchDevice();
 
 async function addTouchEventsListeners() {
-  // if (words.length === 0) return;
-  await wait(300);
+  await wait(400);
   touchArea.addEventListener(events[deviceType].down, touchDown);
   touchArea.addEventListener(events[deviceType].move, touchMove);
   touchArea.addEventListener(events[deviceType].up, touchUp);

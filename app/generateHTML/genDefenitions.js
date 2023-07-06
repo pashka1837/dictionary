@@ -1,6 +1,13 @@
 function createDefLi(def, ul) {
   const liEl = document.createElement(`li`);
   liEl.textContent = def.definition;
+
+  if (def.example && def.example !== ``) {
+    const exampleElP = document.createElement(`p`);
+    exampleElP.classList.add(`shallowText`);
+    exampleElP.textContent = `"${def.example}"`;
+    liEl.append(exampleElP);
+  }
   ul.append(liEl);
 }
 

@@ -4,6 +4,8 @@ const navEL = document.querySelector(`nav`);
 
 const popUpEl = document.querySelector(`.fontSelPopUp`);
 
+const chooseFontEl = document.querySelector(`.chosenFont`);
+
 const fontSelectBtn = document.querySelector(`.fontSelect`);
 const switchThemeBtn = document.querySelector(`.switch input`);
 
@@ -25,6 +27,7 @@ const regexForInputVal =
 export {
   touchArea,
   navEL,
+  chooseFontEl,
   searchInput,
   searchForm,
   fontSelectBtn,

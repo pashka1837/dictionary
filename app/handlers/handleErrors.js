@@ -1,7 +1,7 @@
-import { getLoaderCSS } from './styleChangers.js';
-import { searchForm, cancelSearchBtn } from './variable.js';
-import { genErrorHtml } from './generateHTML/genErrorPage.js';
-import { removeHtmlEl } from './generateHTML/removeHtml.js';
+import { getLoaderCSS } from '../styleChangers.js';
+import { searchForm, cancelSearchBtn } from '../variable.js';
+import { genErrorHtml } from '../generateHTML/genErrorPage.js';
+import { removeHtmlEl } from '../generateHTML/removeHtml.js';
 
 function handleFetchError() {
   const smile = `&#128531;`;

@@ -4,23 +4,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <script src="https://kit.fontawesome.com/c569e31624.js" crossorigin="anonymous"></script>
   <link rel="manifest" href="manifest.json">
-  <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
-<meta name="theme-color" content="#050505"/>
-<meta name="apple-mobile-web-app-capable" content="yes" />
-    <link rel="apple-touch-icon" href="assets/icons/icon-192x192.png" />
-    <link rel="apple-touch-startup-image" href="assets/icons/icon-192x192.png" />
+  <meta name="theme-color" content="#050505"/>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png" />
+    <!-- <link rel="apple-touch-startup-image" href="assets/icons/icon-192x192.png" /> -->
     <meta name="apple-mobile-web-app-title" content="Dictionary" />
-<link rel="icon" type="image/png" sizes="32x32" href="./assets/images/logo32x32.png">
+   <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/logo32x32.png">
   <link rel="stylesheet" href="./styles/styles.css">
   <title>Dictionary web app</title>
-  <!-- /* @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap'); */ -->
-
+  
 </head>
 <body>
-<nav>   
+<nav class="unselectable">   
   <button class="logoIconBtn" onclick="window.scrollTo(0,0)"></button>  
 
   <div class="fontSelect"> 
@@ -46,7 +42,7 @@
 
 </nav>
 
-<form class="loader off ">
+<form class="loader off unselectable">
   <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
 </form>
 
@@ -57,6 +53,7 @@
 </form>
 
   <script type="module" src="./app/app.js"></script>
+  <script src="https://kit.fontawesome.com/c569e31624.js" crossorigin="anonymous"></script>
 
 </body>
 

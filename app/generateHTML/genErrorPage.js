@@ -4,7 +4,7 @@ export function genErrorHtml(result, smile = undefined) {
   const titleEl = document.createElement(`h2`);
   const messageEl = document.createElement(`p`);
 
-  errorDiv.classList.add(`errorFetch`);
+  errorDiv.classList.add(`errorFetch`, `unselectable`);
   smileEl.classList.add(`smile`);
   messageEl.classList.add(`message`);
 

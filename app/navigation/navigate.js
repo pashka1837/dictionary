@@ -1,10 +1,11 @@
-import { handleSubmit } from './handleSubmit.js';
-import { searchInput, searchForm, synNode } from './variable.js';
-import { genIntroHtml } from './generateHTML/genIntro.js';
-import { removeHtmlEl } from './generateHTML/removeHtml.js';
-import { getLoaderCSS } from './styleChangers.js';
+import { handleSubmit } from '../handlers/handleSubmit.js';
+import { searchInput, searchForm, synNode } from '../variable.js';
+import { genIntroHtml } from '../generateHTML/genIntro.js';
+import { removeHtmlEl } from '../generateHTML/removeHtml.js';
+import { getLoaderCSS } from '../styleChangers.js';
 import { removeTouchEventsListeners } from './touchIF.js';
-import { wait, searchParentNode } from './utils/util.js';
+import { wait } from '../utils/util.js';
+import { searchParentNode } from './nodeActions.js';
 
 async function goHomePage() {
   getLoaderCSS();
@@ -29,7 +30,7 @@ async function moveBackPage() {
   removeHtmlEl();
   await wait(400);
 
-  const searchWord = parentNode[parentNode.length - 2];
+  let searchWord = parentNode[parentNode.length - 2];
 
   if (searchWord.includes('error404')) {
     localStorage.setItem('curWord', searchWord);
@@ -39,19 +40,16 @@ async function moveBackPage() {
 
   localStorage.setItem('curWord', searchWord);
 
+  searchWord = searchWord.split(` `).shift();
+
   searchInput.value = searchWord;
 
   getLoaderCSS();
-  await handleSubmit();
+
+  await handleSubmit(false, true);
 }
 
-async function moveNextPage(word) {
-  searchInput.value = word;
-  words.pop();
-  await handleSubmit();
-}
-
-export { moveBackPage, moveNextPage };
+export { moveBackPage };
 
 /* console.log(words);
   removeTouchEventsListeners();
