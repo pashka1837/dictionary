@@ -1,60 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#050505"/>
-  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#050505" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
     <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png" />
-    <!-- <link rel="apple-touch-startup-image" href="assets/icons/icon-192x192.png" /> -->
     <meta name="apple-mobile-web-app-title" content="Dictionary" />
-   <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/logo32x32.png">
-  <link rel="stylesheet" href="./styles/styles.css">
-  <title>Dictionary web app</title>
-  
-</head>
-<body>
-<nav class="unselectable">   
-  <button class="logoIconBtn" onclick="window.scrollTo(0,0)"></button>  
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/images/logo32x32.png"
+    />
+    <link rel="stylesheet" href="./styles/styles.css" />
+    <title>Dictionary web app</title>
+  </head>
+  <body>
+    <nav class="unselectable">
+      <button class="logoIconBtn" onclick="window.scrollTo(0,0)"></button>
 
-  <div class="fontSelect"> 
-    <p class="chosenFont">Sans Serif</p> 
-    <button class="arrowBtn"> </button>
-  </div>
+      <div class="fontSelect">
+        <p class="chosenFont">Sans Serif</p>
+        <button class="arrowBtn"></button>
+      </div>
 
-  <div class="fontSelPopUp off"> 
-    <div> 
-      <p data-font="Inter">Sans Serif</p>
-      <p data-font="Lora">Serif</p>
-      <p data-font="IBM Plex Mono">Mono</p>
-    </div>   
-  </div>
+      <div class="fontSelPopUp off">
+        <div>
+          <p data-font="Inter">Sans Serif</p>
+          <p data-font="Lora">Serif</p>
+          <p data-font="IBM Plex Mono">Mono</p>
+        </div>
+      </div>
 
-  <div class="colorSwitch">
-    <label class="switch" >
-      <input type="checkbox">
-      <span class="slider round"></span>
-    </label>  
-    <img class="moonIcon"src="./assets/images/icon-moon.svg" alt="moonIcon" srcset="">
-  </div>
+      <div class="colorSwitch">
+        <label class="switch">
+          <input type="checkbox" />
+          <span class="slider round"></span>
+        </label>
+        <img
+          class="moonIcon"
+          src="./assets/images/icon-moon.svg"
+          alt="moonIcon"
+          srcset=""
+        />
+      </div>
+    </nav>
 
-</nav>
+    <form class="loader off unselectable">
+      <div class="lds-ellipsis">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </form>
 
-<form class="loader off unselectable">
-  <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
-</form>
+    <form class="search" action="">
+      <input type="text" value="" placeholder="Search for any word…" />
+      <button class="searchBtn unselectable" type=""></button>
+      <button class="cancelSearchBtn off" type="click"></button>
+    </form>
 
-<form class="search" action="">       
-    <input type="text" value="" placeholder="Search for any word…" >
-    <button class="searchBtn" type=""></button>
-    <button class="cancelSearchBtn off" type="click"> </button>
-</form>
-
-  <script type="module" src="./build/app.js"></script>
-  <script src="https://kit.fontawesome.com/c569e31624.js" crossorigin="anonymous"></script>
-
-</body>
-
+    <script type="module" src="./app/app.js"></script>
+    <script
+      src="https://kit.fontawesome.com/c569e31624.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>

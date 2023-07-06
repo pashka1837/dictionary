@@ -1,5 +1,6 @@
 export function genBottomSourceHtml(sourceUrls) {
   const bottomDiv = document.createElement(`div`);
+  const innerDiv = document.createElement(`div`);
   const hrEl = document.createElement(`hr`);
   const sourceElP = document.createElement(`p`);
   const sourceAnchorEl = document.createElement(`a`);
@@ -13,7 +14,8 @@ export function genBottomSourceHtml(sourceUrls) {
   sourceAnchorEl.textContent = ` `;
 
   sourceAnchorEl.append(iEl);
-  bottomDiv.append(hrEl, sourceElP, sourceAnchorEl);
+  innerDiv.append(sourceElP, sourceAnchorEl);
+  bottomDiv.append(hrEl, innerDiv);
 
   sourceAnchorEl.childNodes[0].textContent =
     sourceUrls[0] || `https://en.wiktionary.org/wiki/`;

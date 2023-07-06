@@ -1,5 +1,4 @@
 const sources = [
-  'manifest.json',
   'index.html',
   'styles/styles.css',
 
@@ -25,12 +24,12 @@ const sources = [
 
   'app/app.js',
   'app/fetching.js',
+  'app/soucesForSW.js',
   'app/styleChangers.js',
   'app/variable.js',
 
   'assets/fonts/IBMPlexMono/IBMPlexMono-Bold.ttf',
   'assets/fonts/IBMPlexMono/IBMPlexMono-BoldItalic.ttf',
-  'assets/fonts/IBMPlexMono/IBMPlexMono-MediumItalic.ttf',
   'assets/fonts/IBMPlexMono/IBMPlexMono-Regular.ttf',
   'assets/fonts/inter/Inter-VariableFont_slnt,wght.ttf',
   'assets/fonts/lora/Lora-VariableFont_wght.ttf',
@@ -45,6 +44,7 @@ const sources = [
   'assets/images/icon-moon.svg',
   'assets/images/icon-new-window.svg',
   'assets/images/icon-play.svg',
+  'assets/images/icon-play-hover.svg',
   'assets/images/icon-search.svg',
   'assets/images/logo.svg',
   'assets/images/logo32x32.png',

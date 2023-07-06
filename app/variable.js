@@ -17,6 +17,7 @@ const searchForm = document.querySelector(`.search`);
 const synNode = {};
 
 const baseUrl = `https://api.dictionaryapi.dev/api/v2/entries/en`;
+
 const header = new Headers({
   Accept: 'application/json',
 });

@@ -1,8 +1,12 @@
 import { genIntroHtml } from './genIntro.js';
+import { wait } from '../utils/util.js';
 
-function handlePlayAudio(audioSrc) {
+async function handlePlayAudio(audioSrc, playBtn) {
+  playBtn.src = `./assets/images/icon-play-hover.svg`;
+  await wait(200);
   const audio = new Audio(audioSrc);
   audio.play();
+  playBtn.src = `./assets/images/icon-play.svg`;
 }
 
 function findEl(obj, audio = false) {
@@ -37,7 +41,10 @@ function getAudio(phonetics) {
   playBtn.src = `./assets/images/icon-play.svg`;
   playBtn.alt = `playTranscript`;
 
-  playBtn.addEventListener(`pointerdown`, () => handlePlayAudio(audioSrc));
+  playBtn.addEventListener(
+    `pointerdown`,
+    async () => await handlePlayAudio(audioSrc, playBtn)
+  );
   return playBtn;
 }
 
