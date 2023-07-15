@@ -50,6 +50,7 @@ function touchDown(e) {
 async function touchMove(e) {
   if (!isTouchDevice()) {
     e.preventDefault();
+    return;
   }
   if (isSwiped) {
     getXY(e);
@@ -74,7 +75,6 @@ async function addTouchEventsListeners() {
   touchArea.addEventListener(events[deviceType].move, touchMove);
   touchArea.addEventListener(events[deviceType].up, touchUp);
   touchArea.addEventListener(`mouseleave`, touchUp);
-  window.addEventListener(`load`, touchUp);
 }
 
 function removeTouchEventsListeners() {
@@ -82,7 +82,6 @@ function removeTouchEventsListeners() {
   touchArea.removeEventListener(events[deviceType].move, touchMove);
   touchArea.removeEventListener(events[deviceType].up, touchUp);
   touchArea.removeEventListener(`mouseleave`, touchUp);
-  window.removeEventListener(`load`, touchUp);
 }
 
-export { addTouchEventsListeners, removeTouchEventsListeners };
+export { addTouchEventsListeners, removeTouchEventsListeners, touchUp };

@@ -21,6 +21,7 @@ import {
 } from './styleChangers.js';
 
 import { handleSubmit } from './handlers/handleSubmit.js';
+import { touchUp } from './navigation/touchIF.js';
 
 const phoneticAndAudioDiv = genIntroHtml();
 searchForm.insertAdjacentElement('afterend', phoneticAndAudioDiv);
@@ -35,7 +36,12 @@ window.addEventListener(`load`, async () => {
   }
 });
 
-window.addEventListener('load', preloadTheme);
+function onWindowLoad() {
+  touchUp();
+  preloadTheme();
+}
+
+window.addEventListener('load', onWindowLoad);
 window.addEventListener('resize', locationOfPopUp);
 touchArea.addEventListener(`pointerdown`, focusOnBody);
 switchThemeBtn.addEventListener(`change`, handleSwitchTheme);

@@ -60,7 +60,6 @@
 }
 
 body {
-  caret-color: transparent;
   --text-color: #2d2d2d;
   --bg-color: #ffffff;
   --source-text-color: #2d2d2d;
@@ -324,6 +323,7 @@ input:checked + .slider:before {
   background: url(../assets/images/icon-play.svg) no-repeat;
   background-size: contain;
   background-position: center;
+  cursor: pointer;
 }
 
 .meaning {
@@ -379,6 +379,7 @@ input:checked + .slider:before {
 }
 
 .synonyms {
+  caret-color: transparent;
   margin-top: 6.4vw;
   display: grid;
   grid-template-columns: 1fr 3.12fr;

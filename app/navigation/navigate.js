@@ -50,31 +50,3 @@ async function moveBackPage() {
 }
 
 export { moveBackPage };
-
-/* console.log(words);
-  removeTouchEventsListeners();
-
-  const curWord = localStorage.getItem('curWord');
-  const indexOfCur = words.indexOf(curWord);
-  const searchWord = words[indexOfCur - 1];
-  words.pop();
-
-  if (indexOfCur <= 0) return await goHomePage();
-
-  getLoaderCSS();
-  await wait(400);
-
-  if (searchWord === 'error404') {
-    words.splice(indexOfCur - 1, 1);
-    console.log(`404`, words);
-    getLoaderCSS();
-    return await moveBackPage();
-  }
-
-  getLoaderCSS();
-  console.log(searchWord);
-  searchInput.value = searchWord;
-
-  // getLoaderCSS();
-
-  await handleSubmit(); */
