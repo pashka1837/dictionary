@@ -10,7 +10,7 @@ const failedRes = new Response(null, {
 });
 
 self.addEventListener(`install`, async () => {
-  console.log(`sw: install`);
+  // console.log(`sw: install`);
   const cache = await caches.open(staticCache);
   await cache.addAll(assestsUrls);
 });

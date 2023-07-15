@@ -4,6 +4,7 @@ import {
   switchThemeBtn,
   searchForm,
   fontSelectBtn,
+  touchArea,
 } from './variable.js';
 
 import { focusOnBody } from './utils/util.js';
@@ -16,6 +17,7 @@ import {
   handleSwitchTheme,
   handleChooseFont,
   preloadTheme,
+  locationOfPopUp,
 } from './styleChangers.js';
 
 import { handleSubmit } from './handlers/handleSubmit.js';
@@ -33,8 +35,9 @@ window.addEventListener(`load`, async () => {
   }
 });
 
-window.onload = preloadTheme();
-document.body.addEventListener(`pointerdown`, focusOnBody);
+window.addEventListener('load', preloadTheme);
+window.addEventListener('resize', locationOfPopUp);
+touchArea.addEventListener(`pointerdown`, focusOnBody);
 switchThemeBtn.addEventListener(`change`, handleSwitchTheme);
 searchInput.addEventListener(`blur`, handleInputBlur);
 searchInput.addEventListener(`focus`, handleInputFocus);

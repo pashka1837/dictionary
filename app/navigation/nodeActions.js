@@ -39,25 +39,8 @@ function updateCurWord(word, remove = false) {
     };
     curNode.children.push(newNode);
   }
-  console.log(synNode);
+  // console.log(synNode);
   localStorage.setItem('curWord', newWord);
 }
-
-// function updateCurWord(word, remove = false) {
-//   if (remove) words.splice(0);
-//   const isExists = words.find((el) => el === word);
-//   if (!isExists) words.push(word);
-//   localStorage.setItem('curWord', word);
-// }
-
-// function searchParentNode(tree, value) {
-//   if (tree.word === value) return [value];
-//   if (!tree.children) return false;
-//   const parentNode = [];
-//   tree.children.find((x) => parentNode.push(searchParentNode(x, value)));
-//   if (parentNode) {
-//     return parentNode.push(tree.word);
-//   }
-// }
 
 export { updateCurWord, searchNode, searchParentNode };

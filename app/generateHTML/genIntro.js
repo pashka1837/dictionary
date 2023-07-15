@@ -10,7 +10,9 @@ export function genIntroHtml(word = false, transcript = false) {
 
   searchedWord.textContent = word || 'This is a Dictionary.';
   transcriptWord.textContent = transcript || 'You can search for any word.';
-
+  if (!word && !transcript) {
+    introDiv.style.caretColor = `transparent`;
+  }
   innerDiv.append(searchedWord, transcriptWord);
   introDiv.append(innerDiv);
   return introDiv;

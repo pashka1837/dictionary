@@ -26,7 +26,7 @@ async function fetchWord(word, isNew = false) {
   if (response.status === 404) return handle404(response, isNew);
 
   const result = await response.json();
-  console.log(result);
+  // console.log(result);
   return result[0];
 }
 

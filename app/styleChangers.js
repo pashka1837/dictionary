@@ -26,6 +26,7 @@ function chooseFont(e) {
 
 function handleChooseFont(e) {
   e.stopPropagation();
+  locationOfPopUp();
   fontSelectBtn.removeEventListener(`pointerdown`, handleChooseFont);
   popUpEl.classList.toggle(`off`);
   window.addEventListener(`pointerdown`, chooseFont);
@@ -68,4 +69,16 @@ function getLoaderCSS() {
   loaderEl.classList.toggle(`off`);
 }
 
-export { handleSwitchTheme, handleChooseFont, getLoaderCSS, preloadTheme };
+function locationOfPopUp() {
+  const { left, bottom } = chooseFontEl.getBoundingClientRect();
+  popUpEl.style.left = `${left}px`;
+  popUpEl.style.top = `${bottom + 15}px`;
+}
+
+export {
+  handleSwitchTheme,
+  handleChooseFont,
+  getLoaderCSS,
+  preloadTheme,
+  locationOfPopUp,
+};
